@@ -30,7 +30,7 @@ RUN cp /var/www/portal/web/sites/default/default.settings.php /var/www/portal/we
 
 # get swagger ui dependency
 WORKDIR /var/www/portal/web
-RUN mkdir libraries && curl -sSL https://github.com/swagger-api/swagger-ui/archive/v3.19.4.tar.gz -o swagger.tar.gz && tar -xvzf swagger.tar.gz && rm swagger.tar.gz  && mv swagger-ui-3.19.4 libraries/swagger_ui
+RUN mkdir -p libraries && curl -sSL https://github.com/swagger-api/swagger-ui/archive/v3.19.4.tar.gz -o swagger.tar.gz && tar -xvzf swagger.tar.gz && rm swagger.tar.gz  && mv swagger-ui-3.19.4 libraries/swagger_ui
 
 # set permissions and allow settings.php to be writable during installation. make sure you set it back to 644 afterwards!
 WORKDIR /var/www/portal
