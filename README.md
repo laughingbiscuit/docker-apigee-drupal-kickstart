@@ -10,11 +10,6 @@ See [here](https://github.com/apigee/apigee-devportal-kickstart-drupal)
 
 To Use:
 ``` bash
-# prerequisite: set APIGEE_XXX variables
-export APIGEE_ORG=xxx
-export APIGEE_USER=xxx
-export APIGEE_PASS=xxx
-
 # build and run the container
 ./start.sh
 ```
