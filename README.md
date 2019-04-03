@@ -14,4 +14,4 @@ To Use:
 ./start.sh
 ```
 
-Navigate to... `https://localhost:8080` and follow the wizard. Make sure you use SQLite if you don't want to separately configure a database.
+Navigate to... `http://localhost:8080` and follow the wizard. Make sure you use SQLite if you don't want to separately configure a database.
