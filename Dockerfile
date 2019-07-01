@@ -34,7 +34,6 @@ RUN cp /var/www/portal/web/sites/default/default.settings.php /var/www/portal/we
 WORKDIR /var/www/portal/web
 RUN mkdir -p libraries && curl -sSL https://github.com/swagger-api/swagger-ui/archive/v3.19.4.tar.gz -o swagger.tar.gz && tar -xvzf swagger.tar.gz && rm swagger.tar.gz  && mv swagger-ui-3.19.4 libraries/swagger_ui
 
-
 # adding monetization module
 WORKDIR /var/www/portal
 RUN composer require drupal/apigee_m10n
