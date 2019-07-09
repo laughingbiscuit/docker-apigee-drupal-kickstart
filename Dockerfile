@@ -2,7 +2,9 @@ FROM drupal:8-apache
 
 # install dependencies
 RUN apt-get update
-RUN apt-get install -y curl git ranger libpng-dev unzip vim sqlite3
+RUN apt-get install -y curl git ranger libpng-dev libjpeg62-turbo-dev libfreetype6-dev unzip vim sqlite3
+## add jpeg support to gd
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 ## adding bcmath extension
 RUN docker-php-ext-install bcmath
@@ -28,7 +30,7 @@ RUN composer require drupal/swagger_ui_formatter
 # configure apache
 RUN sed -i 's/DocumentRoot .*/DocumentRoot \/var\/www\/portal\/web/' /etc/apache2/sites-available/000-default.conf
 RUN mkdir -p /var/www/portal/web/sites/default/files
-RUN cp /var/www/portal/web/sites/default/default.settings.php /var/www/portal/web/sites/default/settings.php 
+RUN cp /var/www/portal/web/sites/default/default.settings.php /var/www/portal/web/sites/default/settings.php
 
 # get swagger ui dependency
 WORKDIR /var/www/portal/web
@@ -42,7 +44,4 @@ RUN composer require drupal/apigee_m10n
 WORKDIR /var/www/portal
 ADD ./set-permissions.sh ./set-permissions.sh
 RUN chmod +x ./set-permissions.sh && ./set-permissions.sh --drupal_path=$(pwd)/web --drupal_user=root --httpd_group=www-data
-RUN chmod 777 ./web/sites/default/settings.php 
-
-
-
+RUN chmod 777 ./web/sites/default/settings.php
