@@ -18,3 +18,4 @@ To Use:
 
 Navigate to `localhost:8080` and you will see an Apigee Portal installed with demo content.
 
+Default admin credentials are: `admin` and `pass`, but you can change these in `start.sh`
