@@ -14,4 +14,5 @@ To Use:
 ./start.sh
 ```
 
-Navigate to... `http://localhost:8080` and follow the wizard. Make sure you use SQLite if you don't want to separately configure a database.
+Navigate to `localhost:8080` and you will see an Apigee Portal installed with demo content.
+
