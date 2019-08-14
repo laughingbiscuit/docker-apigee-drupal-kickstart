@@ -4,4 +4,4 @@ services:
 before_install:
 - ./start.sh
 script:
-- ./test.sh
+- sleep 3 && ./test.sh
