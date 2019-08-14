@@ -2,6 +2,9 @@ FROM drupal:8-apache
 
 ARG ADMIN_USER
 ARG ADMIN_PASS
+ARG APIGEE_USER
+ARG APIGEE_PASS
+ARG APIGEE_ORG
 
 # install dependencies
 RUN apt-get update
@@ -29,13 +32,15 @@ RUN composer require drupal/swagger_ui_formatter drupal/apigee_m10n
 # configure apache
 RUN sed -i 's/DocumentRoot .*/DocumentRoot \/var\/www\/portal\/web/' /etc/apache2/sites-available/000-default.conf
 RUN mkdir -p /var/www/portal/web/sites/default/files
-RUN cp /var/www/portal/web/sites/default/default.settings.php /var/www/portal/web/sites/default/settings.php 
+ADD ./settings.php /var/www/portal/web/sites/default/settings.php 
 
 # get swagger ui dependency
 WORKDIR /var/www/portal/web
 RUN mkdir -p libraries && curl -sSL https://github.com/swagger-api/swagger-ui/archive/v3.19.4.tar.gz -o swagger.tar.gz && tar -xvzf swagger.tar.gz && rm swagger.tar.gz  && mv swagger-ui-3.19.4 libraries/swagger_ui
-RUN echo "pass:"$ADMIN_PASS
 RUN ../vendor/drush/drush/drush si apigee_devportal_kickstart --db-url=sqlite://sites/default/files/.ht.sqlite --site-name="Apigee Developer Portal" --account-name="$ADMIN_USER" --account-pass="$ADMIN_PASS" --no-interaction
+
+# configure apigee connection credentials from environment variables
+RUN ../vendor/drush/drush/drush config:set key.key.apigee_edge_connection_default key_provider apigee_edge_environment_variables --no-interaction
 
 # set permissions 
 WORKDIR /var/www/portal

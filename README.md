@@ -12,10 +12,14 @@ See [here](https://github.com/apigee/apigee-devportal-kickstart-drupal)
 
 To Use:
 ``` bash
+export APIGEE_ORG=xxx
+export APIGEE_USER=xxx
+export APIGEE_PASS=xxx
+
 # build and run the container
 ./start.sh
 ```
 
 Navigate to `localhost:8080` and you will see an Apigee Portal installed with demo content.
 
-Default admin credentials are: `admin` and `pass`, but you can change these in `start.sh`
+Default admin credentials for the portal are: `admin` and `pass`, but you can change these in `start.sh`
