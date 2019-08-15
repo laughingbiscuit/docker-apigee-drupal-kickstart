@@ -9,6 +9,10 @@ Here is simple setup that lets you run the Apigee Drupal Kickstarter in a Docker
 
 See [here](https://github.com/apigee/apigee-devportal-kickstart-drupal)
 
+## Features
+- Apigee Kickstart profile installed
+- Drupal REST UI installed
+- REST endpoints configure for Apigee Entities
 
 To Use:
 ``` bash

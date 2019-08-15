@@ -27,7 +27,7 @@ RUN composer require drush/drush
 RUN yes | ./vendor/drush/drush/drush init
 
 # install dependencies
-RUN composer require drupal/swagger_ui_formatter drupal/apigee_m10n
+RUN composer require drupal/swagger_ui_formatter drupal/apigee_m10n drupal/restui
 
 # configure apache
 RUN sed -i 's/DocumentRoot .*/DocumentRoot \/var\/www\/portal\/web/' /etc/apache2/sites-available/000-default.conf
@@ -41,6 +41,13 @@ RUN ../vendor/drush/drush/drush si apigee_devportal_kickstart --db-url=sqlite://
 
 # configure apigee connection credentials from environment variables
 RUN ../vendor/drush/drush/drush config:set key.key.apigee_edge_connection_default key_provider apigee_edge_environment_variables --no-interaction
+
+# import configuration files for rest module
+ADD ./config ./config
+RUN ../vendor/drush/drush/drush en rest restui
+RUN ../vendor/drush/drush/drush cim --partial --source=$(pwd)/config
+
+# RUN drush en rest
 
 # set permissions 
 WORKDIR /var/www/portal

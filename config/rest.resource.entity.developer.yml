@@ -1,0 +1,19 @@
+dependencies:
+    module:
+      - basic_auth
+      - developer
+      - serialization
+      - user
+id: entity.developer
+plugin_id: 'entity:developer'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - basic_auth
