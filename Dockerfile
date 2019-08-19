@@ -44,7 +44,7 @@ RUN ../vendor/drush/drush/drush config:set key.key.apigee_edge_connection_defaul
 
 # import configuration files for rest module
 ADD ./config ./config
-RUN ../vendor/drush/drush/drush en rest restui
+RUN ../vendor/drush/drush/drush en rest restui basic_auth
 RUN ../vendor/drush/drush/drush cim --partial --source=$(pwd)/config
 
 # RUN drush en rest
