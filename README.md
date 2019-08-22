@@ -1,8 +1,6 @@
 Apigee Dev Portal Kickstart Drupal + Docker
 ---
 
-[![Build Status](https://travis-ci.org/laughingbiscuit/docker-apigee-drupal-kickstart.svg?branch=master)](https://travis-ci.org/laughingbiscuit/docker-apigee-drupal-kickstart)
-
 Using the `quick-start` command is great on your local machine, but doesn't play nice a Docker container.
 
 Here is simple setup that lets you run the Apigee Drupal Kickstarter in a Docker container. This image is for local development purposes. This is not intended for a production setup. Please refer to the [Documentation](https://docs.apigee.com/api-platform/publish/drupal/open-source-drupal-8) for installation, configuration and production hosting considerations.
