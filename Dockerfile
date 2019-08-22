@@ -37,17 +37,19 @@ ADD ./settings.php /var/www/portal/web/sites/default/settings.php
 # get swagger ui dependency
 WORKDIR /var/www/portal/web
 RUN mkdir -p libraries && curl -sSL https://github.com/swagger-api/swagger-ui/archive/v3.19.4.tar.gz -o swagger.tar.gz && tar -xvzf swagger.tar.gz && rm swagger.tar.gz  && mv swagger-ui-3.19.4 libraries/swagger_ui
+
+# perform site install
 RUN ../vendor/drush/drush/drush si apigee_devportal_kickstart --db-url=sqlite://sites/default/files/.ht.sqlite --site-name="Apigee Developer Portal" --account-name="$ADMIN_USER" --account-pass="$ADMIN_PASS" --no-interaction
+
+# enable dependencies
+RUN ../vendor/drush/drush/drush en rest restui basic_auth
 
 # configure apigee connection credentials from environment variables
 RUN ../vendor/drush/drush/drush config:set key.key.apigee_edge_connection_default key_provider apigee_edge_environment_variables --no-interaction
 
 # import configuration files for rest module
 ADD ./config ./config
-RUN ../vendor/drush/drush/drush en rest restui basic_auth
 RUN ../vendor/drush/drush/drush cim --partial --source=$(pwd)/config
-
-# RUN drush en rest
 
 # set permissions 
 WORKDIR /var/www/portal

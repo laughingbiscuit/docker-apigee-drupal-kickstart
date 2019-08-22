@@ -9,5 +9,5 @@ done
 curl -f -s localhost:8080 | grep "APIs" > /dev/null && echo "Portal is up"
 
 # check that the API is enabled
-curl localhost:8080/api/1?_format=json | jq '.spec[].url' | grep "petstore.yaml"> /dev/null && echo "REST API is available"
+curl -f -s localhost:8080/api/1?_format=json | jq '.spec[].url' | grep "petstore.yaml"> /dev/null && echo "REST API is available"
 
