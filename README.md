@@ -26,3 +26,6 @@ export APIGEE_PASS=xxx
 Navigate to `localhost:8080` and you will see an Apigee Portal installed with demo content.
 
 Default admin credentials for the portal are: `admin` and `pass`, but you can change these in `start.sh`.
+
+## Disclaimer
+This is not an officially supported Google product.
